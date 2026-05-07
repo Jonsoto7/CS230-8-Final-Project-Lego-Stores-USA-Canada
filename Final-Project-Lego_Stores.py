@@ -292,7 +292,7 @@ if not map_data.empty:
     st.pydeck_chart(deck)
 
     if legoland_names:
-        st.write("🎢 LEGOLAND locations in current filter:", ", ".join(legoland_names))
+        st.write(" LEGOLAND locations in current filter:", ", ".join(legoland_names))
     else:
         st.write("No LEGOLAND locations in current filter.")
 
