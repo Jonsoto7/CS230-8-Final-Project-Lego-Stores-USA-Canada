@@ -227,7 +227,7 @@ pivot_df = df_all.pivot_table(
     values = "Store Name",
     aggfunc = "count", fill_value = 0,
 )
-pivot_df = ["Total"] = pivot_df.sum(axis = 1)
+pivot_df["Total"] = pivot_df.sum(axis=1)
 pivot_df = pivot_df.sort_values("Total", ascending=False)
 st.dataframe(pivot_df, use_container_width = True)
 
