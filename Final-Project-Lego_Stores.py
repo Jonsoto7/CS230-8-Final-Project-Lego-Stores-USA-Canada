@@ -74,7 +74,7 @@ st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.
                  width= 100,
                  )
 
-st.sidebar.tile("filter stores")
+st.sidebar.title("filter stores")
 
 country_options = ["All"] + sorted(df_all["Country"].unique().tolist())
 selected_country = st.sidebar.selectbox("Select Country", country_options)
