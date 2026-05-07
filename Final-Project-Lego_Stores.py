@@ -147,7 +147,7 @@ if not state_counts_filtered.empty:
     ax1.set_title("Number of LEGO Stores by State / Province", fontsize=15, fontweight="bold", color="black")
     ax1.set_xlabel("State / Province", fontsize=10)
     ax1.set_ylabel("Number of Stores", fontsize=10)
-    ax1.tick_params(axis="x", rotation=60, labelsize=8)
+    ax1.tick_params(axis="x", labelsize=8)
     ax1.yaxis.set_major_locator(plt.MaxNLocator(integer=True))  
     ax1.grid(axis="y", alpha=0.5, linestyle="--")
     ax1.set_facecolor("lightgrey")
