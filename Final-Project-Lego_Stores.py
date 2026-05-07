@@ -60,7 +60,7 @@ def load_data(filepath = None):
         st.error(f"Error: {e}")
         return pd.DataFrame()
 
-def det_summary_stats(df)
+def det_summary_stats(df):
 
     total = len(df)
     country_counts = df["Country"].value_counts().to_dict()
