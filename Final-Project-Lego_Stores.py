@@ -108,7 +108,16 @@ if selected_states:
     st.markdown(
 "Explore how LEGO Retail stores are spread out across North America "
     )
+    
+if selected_country != "All":
+    df_filtered = df_all[df_all["Country"] == selected_country]
+else:
+    df_filtered = df_all.copy()
 
+if selected_states:
+    df_filtered = df_filtered[df_filtered["State"].isin(selected_states)]
+
+total, country_counts, top_state = get_summary_stats(df_filtered)
 total, country_counts,top_state = get_summary_stats(df_filtered)
 usa_count= country_counts.get("USA", 0)
 canada_count= country_counts.get("Canada", 0)
