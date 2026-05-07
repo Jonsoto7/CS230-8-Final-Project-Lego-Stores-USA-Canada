@@ -85,7 +85,7 @@ else:
 
 state_options = sorted(state_pool["State"].unique().tolist())
 
-selected_states = st.sidebar.multislect(
+selected_states = st.sidebar.multiselect(
     "selected state",
     options=state_options,
     default=[],
