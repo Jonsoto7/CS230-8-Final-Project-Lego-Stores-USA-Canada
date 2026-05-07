@@ -40,8 +40,8 @@ def load_data(filepath = None):
     try:
         df = pd.read_csv(filepath)
 
-        df["latitude"] = dp.to_numeric(df["latitude"], errors="coerce")
-        df["lonitude"] = dp.to_numeric(df["Longitude"], errors="coerce")
+        df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
+        df["lonitude"] = pd.to_numeric(df["Longitude"], errors="coerce")
         df = df.dropna(subset=["latitude", "longitude"])
         df["State"] = df["State"].astype(str).str.strip()
         df["City"] = df["City"].astype(str).str.strip()
