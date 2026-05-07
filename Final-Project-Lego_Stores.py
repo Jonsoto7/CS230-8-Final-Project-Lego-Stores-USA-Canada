@@ -302,7 +302,7 @@ if not map_data.empty:
 
     st.markdown("---")
 
-    st.caption("CS230-8 Final Project | Data: Lego Stores USA & Canada | Made with Streamlit, Pandas & Motlib") )
+    st.caption("CS230-8 Final Project | Data: Lego Stores USA & Canada | Made with Streamlit, Pandas & Motlib") 
 
 
 
