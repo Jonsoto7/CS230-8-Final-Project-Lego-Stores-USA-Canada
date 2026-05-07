@@ -237,7 +237,7 @@ def build_map_data(df):
 
     rows = []
     for _, row in df.iterrows():
-        label = f"{row['Store Name']} {row['City']}, {row['State']}}"
+        label = f"{row['Store Name']} {row['City']}, {row['State']}"
         rows.append({
             "lat": row["Latitude"],
             "lon": row["Longitude"],
