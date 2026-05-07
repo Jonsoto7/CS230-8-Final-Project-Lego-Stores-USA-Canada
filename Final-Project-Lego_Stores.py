@@ -97,18 +97,9 @@ min_stores = st.sidebar.slider(
 )
 
 st.sidebar.markdown("--")
-st.sidebar.markdown("Lego Stores USA & Canada")
+st.sidebar.markdown("LEGO Stores USA & Canada")
 
-df_filtered = df_all[df_all["Country"] == selected_country] if selected_country != "all" else df_all.copy()
-
-if selected_states:
-    df_filtered = df_filtered[df_filtered["State"].isin(selected_states)]
-
-    st.title("Lego Stores USA & Canada")
-    st.markdown(
-"Explore how LEGO Retail stores are spread out across North America "
-    )
-    
+# Apply filters
 if selected_country != "All":
     df_filtered = df_all[df_all["Country"] == selected_country]
 else:
@@ -117,34 +108,35 @@ else:
 if selected_states:
     df_filtered = df_filtered[df_filtered["State"].isin(selected_states)]
 
+# Page header
+st.title("LEGO Stores USA & Canada")
+st.markdown("Explore how LEGO retail stores are spread out across North America.")
+
+# Summary stats
 total, country_counts, top_state = get_summary_stats(df_filtered)
-total, country_counts,top_state = get_summary_stats(df_filtered)
-usa_count= country_counts.get("USA", 0)
-canada_count= country_counts.get("Canada", 0)
+usa_count = country_counts.get("USA", 0)
+canada_count = country_counts.get("CAN", 0)
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(label="Total Stores", value=total)
 with col2:
-    st.metric(label="USA Stores", value= usa_count)
+    st.metric(label="USA Stores", value=usa_count)
 with col3:
     st.metric(label="Canada Stores", value=canada_count)
 with col4:
     st.metric(label="Top State / Province", value=top_state)
 
-st.markdown("---")
+st.divider()
+st.subheader("Stores per State / Province")
+st.markdown(f"Showing states/provinces with at least {min_stores} store(s). Adjust the slider in the sidebar.")
 
-st.subheader("# Stores per State / Province")
-st.markdown("Showing State / Provinces with atleast {min_stores} stores. Adjust the slider in sllidebar.")
-
-state_counts = df_filtered["State"].value_coiunts().reset_index()
-state_counts.columns = ["State","Count"]
-state_counts_filtered = state_counts[state_counts["Count"] >= min_stores].sort_values("Count", ascending = False)
+state_counts = df_filtered["State"].value_counts().reset_index()
+state_counts.columns = ["State", "Count"]
+state_counts_filtered = state_counts[state_counts["Count"] >= min_stores].sort_values("Count", ascending=False)
 
 if not state_counts_filtered.empty:
-    fig1, ax1 = plt.subplots(figsize=(10,5))
-
-
+    fig1, ax1 = plt.subplots(figsize=(10, 5))
     us_states = df_all[df_all["State"] == "USA"]["State"].unique().tolist()
     colors = ["red" if s in us_states else "blue" for s in state_counts_filtered["State"]]
 
