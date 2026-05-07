@@ -40,9 +40,9 @@ def load_data(filepath = None):
     try:
         df = pd.read_csv(filepath)
 
-        df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
+        df["latitude"] = pd.to_numeric(df["Latitude"], errors="coerce")
         df["lonitude"] = pd.to_numeric(df["Longitude"], errors="coerce")
-        df = df.dropna(subset=["latitude", "longitude"])
+        df = df.dropna(subset=["Latitude", "Longitude"])
         df["State"] = df["State"].astype(str).str.strip()
         df["City"] = df["City"].astype(str).str.strip()
         df["Country"] = df["Country"].astype(str).str.strip()
@@ -202,7 +202,7 @@ st.markdown("---")
 
 st.subheader("Top States by Store Count")
 
-top_n = st.slider("Shpw Top States", min_value=3, max_value = 15, value = 10, step = 1)
+top_n = st.slider("Show Top States", min_value=3, max_value = 15, value = 10, step = 1)
 
 top_states = df_all["State"].value_counts().head(top_n).reset_index()
 top_states.columns = ["State", "Count"]
@@ -262,8 +262,8 @@ if not map_data.empty:
     )
 
     view_state = pdk.ViewState(
-        lat = map_data["lat"].mean(),
-        lon = map_data["lon"].mean(),
+        Latitude = map_data["lat"].mean(),
+        Longitude = map_data["lon"].mean(),
         zoom = 3,
         pitch = 30,
     )
