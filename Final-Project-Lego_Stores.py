@@ -18,10 +18,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import pydeck as pdk
-from fontTools.unicodedata import script_horizontal_direction
-from matplotlib import ticker
-
-from FinalPro import country_counts, red_patch, country_summary, legoland_names
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 data_file = os.path.join(script_dir, "lego_stores.csv")
