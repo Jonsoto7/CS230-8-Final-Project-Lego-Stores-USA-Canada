@@ -234,7 +234,6 @@ st.dataframe(pivot_df, use_container_width = True)
 st.markdown("---")
 
 def build_map_data(df):
-
     rows = []
     for _, row in df.iterrows():
         label = f"{row['Store Name']} {row['City']}, {row['State']}"
@@ -242,21 +241,20 @@ def build_map_data(df):
             "lat": row["Latitude"],
             "lon": row["Longitude"],
             "tooltip": label,
-            "country": row['Country'],
-            "name": row['Store Name'],
+            "country": row["Country"],
+            "name": row["Store Name"],
         })
 
-map_df = pd.DataFrame(rows)
+    map_df = pd.DataFrame(rows)
+    legoland_names = [r["name"] for r in rows if "LEGOLAND" in r["name"].upper()]
 
-legoland_names = [r["name"] for r in rows if "LegoLand" in r ["name"].upper()]
-
-country_dict = {}
-for r in rows:
-    c = r["Country"]
-    country_dict[c] = country_dict.get(c, 0) + 1
+    country_dict = {}
+    for r in rows:
+        c = r["country"]
+        country_dict[c] = country_dict.get(c, 0) + 1
 
     return map_df, country_dict, legoland_names
-
+    
 st.subheader("Interactive Lego Store Map")
 st.write("Red = USA | Blue = Canada" )
 
